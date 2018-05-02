@@ -96,7 +96,7 @@ document.addEventListener('change', e => {
 	}
 });
 
-// clear files
+// clear files on undo
 document.addEventListener('click', e => {
 	if (e.target.classList.contains('bfi-clear')) {
 		let container = e.target.closest('.bfi-container');
@@ -107,3 +107,11 @@ document.addEventListener('click', e => {
 		});
 	}
 });
+
+// clear files from all bfi elements
+function bfi_clear() {
+	document.querySelectorAll('.bfi-converted, .bfi-converted-multi').forEach(el => {
+		el.value = '';
+		el.dispatchEvent(new Event('change', { 'bubbles': true }));
+	});
+}

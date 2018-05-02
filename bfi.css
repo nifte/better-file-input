@@ -59,7 +59,8 @@
 	padding: 10px 20px 0 20px;
 }
 
-.bfi-clear {
+.bfi-clear,
+.bfi-label span {
 	cursor: pointer;
 	text-decoration: underline;
 }

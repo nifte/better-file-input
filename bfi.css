@@ -1,0 +1,80 @@
+.bfi-container {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: unset;
+	margin: 0;
+	padding: 0;
+	border-radius: 5px;
+	background: rgb(238, 238, 238);
+}
+
+.bfi-converted,
+.bfi-converted-multi {
+	opacity: 0;
+	z-index: 20;
+	top: 0;
+	left: 0;
+}
+
+.bfi-container:not(.expanded) .bfi-converted,
+.bfi-container:not(.expanded) .bfi-converted-multi {
+	position: fixed;
+	width: 0;
+	height: 0;
+}
+
+.bfi-container.expanded .bfi-converted,
+.bfi-container.expanded .bfi-converted-multi {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.bfi-label,
+.bfi-label-selected {
+	width: 100%;
+	height: unset;
+	margin: 0;
+	text-align: center;
+	user-select: none;
+	z-index: 10;
+}
+
+.bfi-container:not(.expanded) .bfi-label {
+	padding: 10px 20px;
+}
+
+.bfi-container.expanded .bfi-label {
+	padding: 30px 20px;
+}
+
+.bfi-label {
+	transition: padding .25s ease;
+	-moz-transition: padding .25s ease;
+	-webkit-transition: padding .25s ease;
+}
+
+.bfi-label-selected {
+	padding: 10px 20px 0 20px;
+}
+
+.bfi-clear {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.bfi-file {
+	padding: 10px 15px;
+	margin: 10px;
+	background: rgb(85, 85, 85);
+	color: white;
+	border-radius: 7px;
+	opacity: 0.75;
+	z-index: 10;
+}
+
+.bfi-file .bfi-clear {
+	float: right;
+	user-select: none;
+}

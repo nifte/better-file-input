@@ -101,7 +101,7 @@ document.addEventListener('change', e => {
 			container.querySelector('.bfi-label').style.display = 'none';
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
 			let file = e.target.files[0].name;
-			let size = '~' + Number(e.target.files[0].size / 1000).toFixed(1) + ' KB';
+			let size = Number(e.target.files[0].size / 1000).toFixed(1) + ' KB';
 			container.insertAdjacentHTML('beforeend', `<div class="bfi-file"><span class="bfi-clear">Undo</span>${file}<br><i>${size}</i></div>`);
 		} else {
 			container.querySelector('.bfi-label').style.display = '';
@@ -118,7 +118,7 @@ document.addEventListener('change', e => {
 			for (let i = 0; i < e.target.files.length; i++) {
 				files.push({
 					'name': e.target.files[i].name,
-					'size': '~' + Number(e.target.files[i].size / 1000).toFixed(1) + ' KB'
+					'size': Number(e.target.files[i].size / 1000).toFixed(1) + ' KB'
 				});
 			}
 			let fileCount = '1 file';

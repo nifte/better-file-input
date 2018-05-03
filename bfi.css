@@ -94,6 +94,7 @@
 	width: calc(100% - 20px);
 	padding: 5px 10px;
 	background: rgb(100, 100, 100);
+	background: linear-gradient(0deg, rgba(90, 90, 90, 1) 0%, rgba(110, 110, 110, 1) 75%);
 	color: white;
 	border-radius: 7px;
 	z-index: 10;
@@ -112,7 +113,7 @@
 .bfi-file i {
 	font-style: normal;
 	font-size: 0.8em;
-	color: rgb(190, 190, 190);
+	color: rgb(180, 180, 180);
 }
 
 .bfi-file .bfi-clear {

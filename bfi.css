@@ -1,3 +1,8 @@
+@keyframes grow {
+	0% { max-height: 0px; padding: 0px; }
+	100% { max-height: 100px; }
+}
+
 .bfi-container {
 	display: block;
 	position: relative;
@@ -8,6 +13,14 @@
 	border-radius: 5px;
 	background: rgb(240, 240, 240);
 	box-sizing: border-box;
+	transition: max-height 1s ease;
+	-moz-transition: max-height 1s ease;
+	-webkit-transition: max-height 1s ease;
+	clip-path: fill-box;
+}
+
+.bfi-container.expanded {
+	border: 4px dashed gray;
 }
 
 .bfi-container * {
@@ -53,13 +66,13 @@
 }
 
 .bfi-container.expanded .bfi-label {
-	padding: 30px 20px;
+	padding: 40px 20px;
 }
 
 .bfi-label {
-	transition: padding .25s ease;
-	-moz-transition: padding .25s ease;
-	-webkit-transition: padding .25s ease;
+	transition: padding .25s ease, border 1s ease;
+	-moz-transition: padding .25s ease, border 1s ease;
+	-webkit-transition: padding .25s ease, border 1s ease;
 }
 
 .bfi-clear,
@@ -79,6 +92,8 @@
 	color: white;
 	border-radius: 7px;
 	z-index: 10;
+	animation: grow 1s ease;
+	line-height: 1em;
 }
 
 .bfi-converted ~ .bfi-file {
@@ -89,8 +104,45 @@
 	margin: 0 10px 10px 10px;
 }
 
+.bfi-file i {
+	font-style: normal;
+	font-size: 0.8em;
+	color: rgb(190, 190, 190);
+}
 
 .bfi-file .bfi-clear {
 	float: right;
 	user-select: none;
+}
+
+.bfi-shadow-container {
+	position: absolute;
+	display: none;
+	margin: 0;
+	padding: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	clip: rect(0, auto, auto, 0);
+}
+
+.bfi-container.expanded .bfi-shadow-container {
+	display: unset;
+}
+
+.bfi-shadow {
+	position: fixed;
+	width: 400px;
+	height: 400px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.1);
+	transform: scale(0);
+	transition: left .1s ease, top .1s ease, transform 0.5s;
+	-moz-transition: left .1s ease, top .1s ease, transform 0.5s;
+	-webkit-transition: left .1s ease, top .1s ease, transform 0.5s;
+}
+
+.bfi-container.hovering .bfi-shadow {
+	transform: scale(1);
 }

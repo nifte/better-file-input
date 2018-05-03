@@ -1,8 +1,10 @@
 // initialize
-function bfi_init() {
+var bfi_counter = 0;
+function bfi_init(options = null) {
 	let bfi = document.querySelectorAll('input[type="file"].bfi');
 	let total = bfi.length;
 	for (let i = 0; i < total; i++) {
+		bfi_counter++;
 		let input = bfi[i];
 		let container = document.createElement('div');
 		let label = '';
@@ -17,45 +19,70 @@ function bfi_init() {
 			input.classList.add('bfi-converted');
 			label = 'Drag & Drop file here, or <span>Browse</span>';
 		}
-		if (!input.hasAttribute('id')) input.setAttribute('id', `bfi-${i}`);
+		if (!input.hasAttribute('id')) input.setAttribute('id', `bfi-${bfi_counter}`);
 		let id = input.getAttribute('id');
 		container.insertAdjacentHTML('afterbegin', `<label class="bfi-label" for="${id}" tabindex="0">${label}</label>`);
+		container.insertAdjacentHTML('beforeend', '<div class="bfi-shadow-container"><div class="bfi-shadow"></div></div>');
 		input.setAttribute('tabindex', -1);
 	}
 	document.querySelectorAll('input[type="file"].bfi').forEach(el => {
 		el.classList.remove('bfi');
 	});
+	if (options != null) {
+		let style = '';
+		if (options.hasOwnProperty('labelColor')) style += `.bfi-label, .bfi-label-selected { color: ${options.labelColor} }`;
+		if (options.hasOwnProperty('containerBackground')) style += `.bfi-container { background: ${options.containerBackground} }`;
+		if (options.hasOwnProperty('fileColor')) style += `.bfi-file { color: ${options.fileColor} }`;
+		if (options.hasOwnProperty('fileBackground')) style += `.bfi-file { background: ${options.fileBackground} }`;
+		if (options.hasOwnProperty('dragDropBorder')) style += `.bfi-container.expanded { border: ${options.dragDropBorder} }`;
+		document.body.insertAdjacentHTML('beforeend', `<style class="bfi-custom-style">${style}</style>`);
+	}
 }
 
-var bfi_timer;
 
-// drag files onto document
-document.addEventListener('dragover', e => {
-	var dt = e.dataTransfer;
+// drag files onto page
+var bfi_drag_timeout, bfi_hover_timeout;
+window.addEventListener('dragover', e => {
+	let dt = e.dataTransfer;
 	if (dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') != -1 : dt.types.contains('Files'))) {
 		document.querySelectorAll('.bfi-container').forEach(el => {
-			el.classList.add('expanded');
-			clearTimeout(bfi_timer);
+			if (el.querySelector('.bfi-label').style.display != 'none') el.classList.add('expanded');
 		});
+		clearTimeout(bfi_drag_timeout);
+		bfi_drag_timeout = setTimeout(() => {
+			document.querySelectorAll('.bfi-container').forEach(el => { el.classList.remove('expanded') });
+		}, 100);
+		document.querySelectorAll('.bfi-shadow').forEach(el => {
+			el.style.left = e.pageX - 200 + 'px';
+			el.style.top = e.pageY - 200 + 'px';
+		});
+		if (e.target.classList.contains('bfi-converted') || e.target.classList.contains('bfi-converted-multi')) {
+			let container = e.target.closest('.bfi-container');
+			container.classList.add('hovering');
+			clearTimeout(bfi_hover_timeout);
+			bfi_hover_timeout = setTimeout(() => {
+				container.classList.remove('hovering');
+			}, 100);
+		}
 	}
 });
 
-// stop dragging files
-document.addEventListener('dragleave', e => {
-	bfi_timer = setTimeout(() => {
-		document.querySelectorAll('.bfi-container').forEach(el => {
-			el.classList.remove('expanded');
-		});
-	}, 100);
+// prevent browser from opening any dragged files
+window.addEventListener('dragover', e => {
+	if (!e.target.classList.contains('bfi-converted') && !e.target.classList.contains('bfi-converted-multi')) {
+		e.preventDefault();
+		e.dataTransfer.effectAllowed = "none";
+		e.dataTransfer.dropEffect = "none";
+	}
 });
 
-// drop files
-document.addEventListener('drop', e => {
-	bfi_timer = setTimeout(() => {
-		document.querySelectorAll('.bfi-container').forEach(el => {
-			el.classList.remove('expanded');
-		});
-	}, 100);
+// prevent browser from opening any dropped files
+window.addEventListener('drop', e => {
+	if (!e.target.classList.contains('bfi-converted') && !e.target.classList.contains('bfi-converted-multi')) {
+		e.preventDefault();
+		e.dataTransfer.effectAllowed = "none";
+		e.dataTransfer.dropEffect = "none";
+	}
 });
 
 // watch for file updates
@@ -66,7 +93,8 @@ document.addEventListener('change', e => {
 			container.querySelector('.bfi-label').style.display = 'none';
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
 			let file = e.target.files[0].name;
-			container.insertAdjacentHTML('beforeend', `<div class="bfi-file">${file}<span class="bfi-clear">Undo</span></div>`);
+			let size = Number(e.target.files[0].size / 1000).toFixed(1) + ' KB';
+			container.insertAdjacentHTML('beforeend', `<div class="bfi-file"><span class="bfi-clear">Undo</span>${file}<br><i>${size}</i></div>`);
 		} else {
 			container.querySelector('.bfi-label').style.display = '';
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
@@ -80,13 +108,16 @@ document.addEventListener('change', e => {
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
 			let files = [];
 			for (let i = 0; i < e.target.files.length; i++) {
-				files.push(e.target.files[i].name);
+				files.push({
+					'name': e.target.files[i].name,
+					'size': Number(e.target.files[i].size / 1000).toFixed(1) + ' KB'
+				});
 			}
 			let fileCount = '1 file';
 			if (files.length > 1) fileCount = `${files.length} files`;
 			container.querySelector('.bfi-label-selected').innerHTML = `${fileCount} selected. <span class="bfi-clear">Undo</span>`;
 			files.forEach(file => {
-				container.insertAdjacentHTML('beforeend', `<div class="bfi-file">${file}</div>`);
+				container.insertAdjacentHTML('beforeend', `<div class="bfi-file">${file.name}<br><i>${file.size}</i></div>`);
 			});
 		} else {
 			container.querySelector('.bfi-label').style.display = '';

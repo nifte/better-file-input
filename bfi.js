@@ -139,18 +139,21 @@ document.addEventListener('change', e => {
 document.addEventListener('click', e => {
 	if (e.target.classList.contains('bfi-clear')) {
 		let container = e.target.closest('.bfi-container');
-		let inputs = container.querySelectorAll('.bfi-converted, .bfi-converted-multi');
-		inputs.forEach(el => {
-			el.value = '';
-			el.dispatchEvent(new Event('change', { 'bubbles': true }));
-		});
+		let inputID = container.querySelector('.bfi-converted, .bfi-converted-multi').getAttribute('id');
+		bfi_clear(inputID);
 	}
 });
 
 // clear files from all bfi elements
-function bfi_clear() {
-	document.querySelectorAll('.bfi-converted, .bfi-converted-multi').forEach(el => {
+function bfi_clear(id = null) {
+	if (id != null) {
+		let el = document.querySelector(`#${id}`);
 		el.value = '';
 		el.dispatchEvent(new Event('change', { 'bubbles': true }));
-	});
+	} else {
+		document.querySelectorAll('.bfi-converted, .bfi-converted-multi').forEach(el => {
+			el.value = '';
+			el.dispatchEvent(new Event('change', { 'bubbles': true }));
+		});
+	}
 }

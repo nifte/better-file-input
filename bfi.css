@@ -75,9 +75,9 @@
 }
 
 .bfi-label {
-	transition: padding .25s ease, border 1s ease;
-	-moz-transition: padding .25s ease, border 1s ease;
-	-webkit-transition: padding .25s ease, border 1s ease;
+	transition: padding .25s ease;
+	-moz-transition: padding .25s ease;
+	-webkit-transition: padding .25s ease;
 }
 
 .bfi-clear,

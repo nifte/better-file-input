@@ -92,14 +92,14 @@
 	width: -webkit-calc(100% - 20px);
 	width: -o-calc(100% - 20px);
 	width: calc(100% - 20px);
-	padding: 5px 10px;
+	padding: 6px 10px;
 	background: rgb(100, 100, 100);
 	background: linear-gradient(0deg, rgba(90, 90, 90, 1) 0%, rgba(110, 110, 110, 1) 75%);
 	color: white;
 	border-radius: 7px;
 	z-index: 10;
-	animation: file_grow 1s ease;
 	line-height: 1em;
+	animation: file_grow 0.7s ease;
 }
 
 .bfi-converted ~ .bfi-file {
@@ -117,7 +117,10 @@
 }
 
 .bfi-file .bfi-clear {
-	float: right;
+	position: absolute;
+	right: 25px;
+	top: calc(50% - 3px);
+	transform: translateY(-50%);
 	user-select: none;
 }
 

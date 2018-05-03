@@ -102,7 +102,7 @@ document.addEventListener('change', e => {
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
 			let file = e.target.files[0].name;
 			let size = Number(e.target.files[0].size / 1000).toFixed(1) + ' KB';
-			container.insertAdjacentHTML('beforeend', `<div class="bfi-file"><span class="bfi-clear">Undo</span>${file}<br><i>${size}</i></div>`);
+			container.insertAdjacentHTML('beforeend', `<div class="bfi-file"><span class="bfi-clear" tabindex="0">Undo</span>${file}<br><i>${size}</i></div>`);
 		} else {
 			container.querySelector('.bfi-label').style.display = '';
 			container.querySelectorAll('.bfi-file').forEach(el => { el.remove() });
@@ -123,7 +123,7 @@ document.addEventListener('change', e => {
 			}
 			let fileCount = '1 file';
 			if (files.length > 1) fileCount = `${files.length} files`;
-			container.querySelector('.bfi-label-selected').innerHTML = `${fileCount} selected. <span class="bfi-clear">Undo</span>`;
+			container.querySelector('.bfi-label-selected').innerHTML = `${fileCount} selected. <span class="bfi-clear" tabindex="0">Undo</span>`;
 			files.forEach(file => {
 				container.insertAdjacentHTML('beforeend', `<div class="bfi-file">${file.name}<br><i>${file.size}</i></div>`);
 			});
@@ -134,6 +134,14 @@ document.addEventListener('change', e => {
 		}
 	}
 });
+
+// simulate click on focused bfi element
+document.body.onkeyup = e => {
+	if (e.keyCode == 32 || e.keyCode == 13) {
+		if (document.activeElement.classList.contains('bfi-label')) document.activeElement.click();
+		if (document.activeElement.classList.contains('bfi-clear')) document.activeElement.click();
+	}
+};
 
 // clear files on undo
 document.addEventListener('click', e => {

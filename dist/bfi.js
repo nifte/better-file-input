@@ -1,13 +1,13 @@
 /*
- * Better File Input
- * by nifte
- * https://github.com/nifte/better-file-input
+ * Better File Input 1.2.8 (https://github.com/nifte/better-file-input)
+ * by nifte (https://github.com/nifte)
+ * Licensed under MIT (https://github.com/nifte/better-file-input/blob/master/LICENSE)
  */
 
-// css
+// Define styles
 const style = '@-webkit-keyframes file_grow{0%{max-height:0;padding:0 10px}100%{max-height:100px}}@keyframes file_grow{0%{max-height:0;padding:0 10px}100%{max-height:100px}}@-webkit-keyframes shadow_grow{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes shadow_grow{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1)}}.bfi-container{display:block;position:relative;width:100%;height:unset;margin:0;padding:0;border-radius:5px;background:#f0f0f0;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transition:max-height 1s ease;transition:max-height 1s ease}.bfi-container.expanded{border:4px dashed gray}.bfi-container *{-webkit-box-sizing:border-box;box-sizing:border-box}.bfi-converted,.bfi-converted-multi{opacity:0;position:absolute;top:0;left:0;width:100%;height:100%}.bfi-container:not(.expanded) .bfi-converted,.bfi-container:not(.expanded) .bfi-converted-multi{z-index:-10}.bfi-container.expanded .bfi-converted,.bfi-container.expanded .bfi-converted-multi{z-index:20}.bfi-label,.bfi-label-selected{display:inline-block;width:100%;height:unset;margin:0;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:10}.bfi-container:not(.expanded) .bfi-label,.bfi-label-selected{padding:10px 20px}.bfi-container.expanded .bfi-label{padding:40px 20px}.bfi-label{-webkit-transition:padding .25s ease;transition:padding .25s ease}.bfi-clear,.bfi-label span{cursor:pointer;text-decoration:underline}.bfi-file{display:inline-block;width:-o-calc(100% - 20px);width:calc(100% - 20px);padding:6px 10px;background:#646464;background:-webkit-gradient(linear,left bottom,left top,from(rgba(90,90,90,1)),color-stop(75%,rgba(110,110,110,1)));background:linear-gradient(0deg,rgba(90,90,90,1) 0,rgba(110,110,110,1) 75%);color:#fff;border-radius:7px;z-index:10;line-height:1em;-webkit-animation:file_grow .7s ease;animation:file_grow .7s ease}.bfi-converted~.bfi-file{margin:10px}.bfi-converted-multi~.bfi-file{margin:0 10px 10px 10px}.bfi-file i{font-style:normal;font-size:.8em;color:#b4b4b4}.bfi-file .bfi-clear{position:absolute;right:25px;top:calc(50% - 2px);-webkit-transform:translateY(-50%);transform:translateY(-50%);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.bfi-shadow-container{position:absolute;display:none;margin:0;padding:0;left:0;right:0;top:0;bottom:0;clip:rect(0,auto,auto,0);z-index:15}.bfi-container.expanded .bfi-shadow-container{display:unset}.bfi-shadow{position:absolute;display:none;width:350px;height:350px;border-radius:50%;background:rgba(0,0,0,.06);-webkit-transition:left .1s ease,top .1s ease;transition:left .1s ease,top .1s ease}.bfi-container.hovering .bfi-shadow{display:unset;-webkit-animation:shadow_grow .5s ease;animation:shadow_grow .5s ease}';
 
-// initialize function
+// Initialize function
 var bfi_counter = 0;
 function bfi_init(options = null) {
 	if (document.querySelectorAll('.bfi-style').length < 1) document.body.insertAdjacentHTML('beforeend', `<style class="bfi-style">${style}</style>`);
@@ -48,12 +48,12 @@ function bfi_init(options = null) {
 	}
 }
 
-// initialize
+// Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
 	bfi_init();
 });
 
-// drag files onto page
+// Drag files onto page
 var bfi_drag_timeout, bfi_hover_timeout;
 window.addEventListener('dragover', e => {
 	let dt = e.dataTransfer;
@@ -85,7 +85,7 @@ window.addEventListener('dragover', e => {
 	}
 });
 
-// drag files out of container
+// Drag files out of container
 window.addEventListener('dragleave', e => {
 	if (e.target.classList.contains('bfi-converted') || e.target.classList.contains('bfi-converted-multi')) {
 		let container = e.target.closest('.bfi-container');
@@ -93,7 +93,7 @@ window.addEventListener('dragleave', e => {
 	}
 });
 
-// prevent browser from opening any dragged files
+// Prevent browser from opening any dragged files
 window.addEventListener('dragover', e => {
 	if (!e.target.classList.contains('bfi-converted') && !e.target.classList.contains('bfi-converted-multi')) {
 		e.preventDefault();
@@ -102,7 +102,7 @@ window.addEventListener('dragover', e => {
 	}
 });
 
-// prevent browser from opening any dropped files
+// Prevent browser from opening any dropped files
 window.addEventListener('drop', e => {
 	if (!e.target.classList.contains('bfi-converted') && !e.target.classList.contains('bfi-converted-multi')) {
 		e.preventDefault();
@@ -111,7 +111,7 @@ window.addEventListener('drop', e => {
 	}
 });
 
-// watch for file updates
+// Watch for file updates
 document.addEventListener('change', e => {
 	if (e.target.classList.contains('bfi-converted')) {
 		let container = e.target.closest('.bfi-container');
@@ -153,7 +153,7 @@ document.addEventListener('change', e => {
 	}
 });
 
-// simulate click on focused bfi element
+// Simulate click on focused bfi element
 document.addEventListener('keyup', e => {
 	if (e.keyCode == 32 || e.keyCode == 13) {
 		if (document.activeElement.classList.contains('bfi-label')) document.activeElement.click();
@@ -161,7 +161,7 @@ document.addEventListener('keyup', e => {
 	}
 });
 
-// clear files on undo
+// Clear files on undo
 document.addEventListener('click', e => {
 	if (e.target.classList.contains('bfi-clear')) {
 		let container = e.target.closest('.bfi-container');
@@ -170,7 +170,7 @@ document.addEventListener('click', e => {
 	}
 });
 
-// clear files from a bfi element
+// Clear files from a bfi element
 function bfi_clear(query = null) {
 	if (query == null) query = '.bfi-converted, .bfi-converted-multi';
 	let inputs = document.querySelectorAll(query);

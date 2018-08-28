@@ -1,0 +1,16 @@
+{
+	"name": "better-file-input",
+	"version": "1.2.8",
+	"description": "A lightweight JavaScript library for improving HTML file inputs.",
+	"main": "dist/bfi.js",
+	"scripts": {
+		"minify-css": "cleancss -o src/css/bfi.min.css src/css/bfi.css",
+		"minify-js": "uglifyjs dist/bfi.js -c -m -o dist/bfi.min.js"
+	},
+	"author": "nifte",
+	"license": "MIT",
+	"devDependencies": {
+		"clean-css-cli": "^4.1.11",
+		"uglify-es": "^3.3.9"
+	}
+}

@@ -1,5 +1,5 @@
 /*
- * Better File Input 1.2.9 (https://github.com/nifte/better-file-input)
+ * Better File Input 1.3.0 (https://github.com/nifte/better-file-input)
  * by nifte (https://github.com/nifte)
  * Licensed under MIT (https://github.com/nifte/better-file-input/blob/master/LICENSE)
  */
@@ -45,6 +45,16 @@ function bfi_init(options = null) {
 		if (options.hasOwnProperty('fileInfoColor')) style_override += `.bfi-file i { color: ${options.fileInfoColor} }`;
 		if (options.hasOwnProperty('dragDropBorder')) style_override += `.bfi-container.expanded { border: ${options.dragDropBorder} }`;
 		document.body.insertAdjacentHTML('beforeend', `<style class="bfi-style-override">${style_override}</style>`);
+	}
+}
+
+// Reset style overrides
+function bfi_reset() {
+	let styles = document.querySelectorAll('.bfi-style-override');
+	if (styles.length) {
+		styles.forEach(el => {
+			el.remove();
+		});
 	}
 }
 

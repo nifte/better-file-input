@@ -1,16 +1,52 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
 		<script src="https://unpkg.com/better-file-input"></script>
 	</head>
 	<body>
-		<h3>Single File Input</h3>
-		<div style="max-width: 500px">
-			<input type="file" class="bfi">
-		</div>
-		<br>
-		<h3>Multiple File Input</h3>
-		<div style="max-width: 500px">
-			<input type="file" class="bfi" multiple>
+		<div class="container mt-4">
+			<h3 class="mb-4 text-center">📁 Single file</h3>
+			<div class="bg-light rounded pt-3 px-3 mb-4">
+				<div class="form-row">
+					<div class="col-md-5 mb-3">
+						<div class="rounded border shadow bg-white p-3 text-center">
+							<label class="w-100 text-danger mb-3">🤔 normal file input</label>
+							<input type="file" style="width: 225px">
+						</div>
+					</div>
+					<div class="col-md-2 mb-3 d-flex align-items-center justify-content-center">
+						<h5 class="d-none d-md-block m-0 text-muted">🠔 VS 🠖</h5>
+						<h5 class="d-block d-md-none m-0 text-muted">🠕 VS 🠗</h5>
+					</div>
+					<div class="col-md-5 mb-3">
+						<div class="rounded border shadow bg-white p-3">
+							<label class="w-100 text-center text-success mb-3">👌 <i>better</i> file input</label>
+							<input type="file" class="bfi">
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3 class="mb-4 text-center">🗃 Multiple files</h3>
+			<div class="bg-light rounded pt-3 px-3">
+				<div class="form-row">
+					<div class="col-md-5 mb-3">
+						<div class="rounded border shadow bg-white p-3 text-center">
+							<label class="w-100 text-danger mb-3">🤔 normal file input</label>
+							<input type="file" style="width: 225px" multiple>
+						</div>
+					</div>
+					<div class="col-md-2 mb-3 d-flex align-items-center justify-content-center">
+						<h5 class="d-none d-md-block m-0 text-muted">🠔 VS 🠖</h5>
+						<h5 class="d-block d-md-none m-0 text-muted">🠕 VS 🠗</h5>
+					</div>
+					<div class="col-md-5 mb-3">
+						<div class="rounded border shadow bg-white p-3">
+							<label class="w-100 text-center text-success mb-3">👌 <i>better</i> file input</label>
+							<input type="file" class="bfi" multiple>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -18,7 +18,7 @@ Add the following to the `<head>` of your document:
 1. Download `dist/bfi.js` (or `dist/bfi.min.js`)
 2. Add the following to the `<head>` of your document:
 ```html
-<script src="/path/to/bfi.js"></script>
+<script src="relative/path/to/bfi.js"></script>
 ```
 
 #### npm
@@ -39,7 +39,7 @@ Simply add `class="bfi"` to your file inputs to automatically convert them to *b
 <input type="file" class="bfi" disabled>   <!-- Disabled file input -->
 ```
 
-Dynamically-created file inputs will not be automatically converted - you need to call `bfi_init()` after creation to convert them:
+Dynamically-created file inputs will **not** be automatically converted - you need to call `bfi_init()` after creation to convert them:
 ```javascript
 // Create new file input with the 'bfi' class
 let newInput = document.createElement('input')

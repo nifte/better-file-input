@@ -4,10 +4,10 @@ A lightweight vanilla JavaScript library that converts HTML File Inputs into use
 [![GitHub](https://img.shields.io/github/license/nifte/better-file-input.svg)](https://github.com/nifte/better-file-input/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/better-file-input.svg)](https://www.npmjs.com/package/better-file-input)
 
-# Demo
+## Demo
 View the live demo [here](https://nifte.github.io/better-file-input)
 
-# Installation
+## Installation
 ### CDN (Recommended)
 Add the following to the `<head>` of your document:
 ```html
@@ -31,7 +31,7 @@ npm i better-file-input
 <script src="./node_modules/better-file-input/dist/bfi.js"></script>
 ```
 
-# Usage
+## Usage
 Simply add `class="bfi"` to your file inputs to automatically convert them to *better* file inputs:
 ```html
 <input type="file" class="bfi">            <!-- Single file input -->
@@ -57,7 +57,7 @@ bfi_clear()                 // Clear all better file inputs
 bfi_clear('#myFileInput')   // Clear the better file input with the id 'myFileInput'
 ```
 
-# Customization
+## Customization
 The `bfi_init()` function accepts one optional argument - an object containing pre-defined options to customize the look of your better file inputs:
 ```javascript
 bfi_init({

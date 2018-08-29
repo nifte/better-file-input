@@ -108,6 +108,7 @@
 	border-radius: 7px;
 	z-index: 10;
 	line-height: 1em;
+	text-align: left;
 	-webkit-animation: file_grow 0.7s ease;
 	        animation: file_grow 0.7s ease;
 }

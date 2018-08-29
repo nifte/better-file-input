@@ -1,5 +1,5 @@
 /*
- * Better File Input 1.2.8 (https://github.com/nifte/better-file-input)
+ * Better File Input 1.2.9 (https://github.com/nifte/better-file-input)
  * by nifte (https://github.com/nifte)
  * Licensed under MIT (https://github.com/nifte/better-file-input/blob/master/LICENSE)
  */

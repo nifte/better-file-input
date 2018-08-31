@@ -8,17 +8,10 @@ A lightweight vanilla JavaScript library that converts HTML File Inputs into use
 View the live demo [here](https://nifte.github.io/better-file-input)
 
 ## Installation
-#### CDN (Recommended)
+#### CDN
 Add the following to the `<head>` of your document:
 ```html
 <script src="https://unpkg.com/better-file-input"></script>
-```
-
-#### Manual
-1. Download `dist/bfi.js` (or `dist/bfi.min.js`)
-2. Add the following to the `<head>` of your document:
-```html
-<script src="relative/path/to/bfi.js"></script>
 ```
 
 #### npm
@@ -29,6 +22,13 @@ npm i better-file-input
 2. Add the following to the `<head>` of your document:
 ```html
 <script src="./node_modules/better-file-input/dist/bfi.js"></script>
+```
+
+#### Manual
+1. Download `dist/bfi.js` (or `dist/bfi.min.js`)
+2. Add the following to the `<head>` of your document:
+```html
+<script src="relative/path/to/bfi.js"></script>
 ```
 
 ## Usage

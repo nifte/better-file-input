@@ -34,20 +34,12 @@ npm i better-file-input
 ## Usage
 Simply add `class="bfi"` to your file inputs to automatically convert them to *better* file inputs:
 ```html
-<input type="file" class="bfi">            <!-- Single file input -->
-<input type="file" class="bfi" multiple>   <!-- Multiple file input -->
-<input type="file" class="bfi" disabled>   <!-- Disabled file input -->
+<input type="file" class="bfi">
 ```
+**Note:** You can also add the `multiple` and `disabled` attributes to your better file inputs
 
 Dynamically-created file inputs will **not** be automatically converted - you need to call `bfi_init()` after creation to convert them:
 ```javascript
-// Create new file input with the 'bfi' class
-let newInput = document.createElement('input')
-newInput.type = 'file'
-newInput.classList.add('bfi')
-document.body.appendChild(newInput)
-
-// Convert newly created file input to a better file input
 bfi_init()
 ```
 
@@ -69,4 +61,7 @@ bfi_init({
   'dragDropBorder': '3px dotted #374f6d'              // The drag & drop border
 })
 ```
-Calling `bfi_reset()` will reset the styles to their default values
+To reset the look of your better file inputs, simply call the `bfi_reset()` function:
+```javascript
+bfi_reset()
+```

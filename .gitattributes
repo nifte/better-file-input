@@ -1,2 +1,3 @@
+index.html linguist-documentation
 dist/* linguist-vendored=false
 src/** linguist-vendored=false

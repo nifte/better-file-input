@@ -1,54 +1,38 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Better File Input demo</title>
+		<title>Better File Input</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+		<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 		<script src="https://unpkg.com/better-file-input"></script>
 	</head>
 	<body>
-		<div class="container mt-4">
-			<h3 class="mb-4 text-center">📁 Single file</h3>
-			<div class="bg-light rounded pt-3 px-3 mb-4">
-				<div class="form-row">
-					<div class="col-md-5 mb-3">
-						<div class="rounded border shadow bg-white p-3 text-center">
-							<label class="w-100 text-danger mb-3">🤔 normal file input</label>
-							<input type="file" style="width: 225px">
-						</div>
-					</div>
-					<div class="col-md-2 mb-3 d-flex align-items-center justify-content-center">
-						<h5 class="d-none d-md-block m-0 text-muted">← VS →</h5>
-						<h5 class="d-block d-md-none m-0 text-muted">VS</h5>
-					</div>
-					<div class="col-md-5 mb-3">
-						<div class="rounded border shadow bg-white p-3">
-							<label class="w-100 text-center text-success mb-3">👌 <i>better</i> file input</label>
-							<input type="file" class="bfi">
-						</div>
-					</div>
+		<div class="container p-3 mx-auto" style="max-width: 900px">
+			<div class="text-center text-xl mb-5">📁 Single file</div>
+			<div class="flex flex-col md:flex-row md:justify-around items-center mb-5">
+				<div class="flex justify-center w-full md:w-2/5 mb-3">
+					<input type="file" style="width: 220px">
+				</div>
+				<div class="text-xl mb-3">
+					<span class="hidden md:inline">→</span>
+					<span class="inline md:hidden">↓</span>
+				</div>
+				<div class="flex justify-center w-4/5 md:w-2/5 mb-3">
+					<input type="file" class="bfi">
 				</div>
 			</div>
-			<h3 class="mb-4 text-center">🗃 Multiple files</h3>
-			<div class="bg-light rounded pt-3 px-3 mb-4">
-				<div class="form-row">
-					<div class="col-md-5 mb-3">
-						<div class="rounded border shadow bg-white p-3 text-center">
-							<label class="w-100 text-danger mb-3">🤔 normal file input</label>
-							<input type="file" style="width: 225px" multiple>
-						</div>
-					</div>
-					<div class="col-md-2 mb-3 d-flex align-items-center justify-content-center">
-						<h5 class="d-none d-md-block m-0 text-muted">← VS →</h5>
-						<h5 class="d-block d-md-none m-0 text-muted">VS</h5>
-					</div>
-					<div class="col-md-5 mb-3">
-						<div class="rounded border shadow bg-white p-3">
-							<label class="w-100 text-center text-success mb-3">👌 <i>better</i> file input</label>
-							<input type="file" class="bfi" multiple>
-						</div>
-					</div>
+			<div class="text-center text-xl mb-5">🗃 Multiple files</div>
+			<div class="flex flex-col md:flex-row md:justify-around items-center mb-5">
+				<div class="flex justify-center w-full md:w-2/5 mb-3">
+					<input type="file" multiple style="width: 220px">
+				</div>
+				<div class="text-xl mb-3">
+					<span class="hidden md:inline">→</span>
+					<span class="inline md:hidden">↓</span>
+				</div>
+				<div class="flex justify-center w-4/5 md:w-2/5 mb-3">
+					<input type="file" multiple class="bfi">
 				</div>
 			</div>
 		</div>

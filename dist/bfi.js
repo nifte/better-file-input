@@ -29,6 +29,7 @@ function bfi_init(options = null) {
 			input.classList.add('bfi-converted');
 			label = 'Drag & Drop file here, or <span>Browse</span>';
 		}
+		if (options.hasOwnProperty('labelText')) label = options.labelText;
 		if (!input.hasAttribute('id')) input.setAttribute('id', `bfi-${bfi_counter}`);
 		let id = input.getAttribute('id');
 		container.insertAdjacentHTML('afterbegin', `<label class="bfi-label" for="${id}" tabindex="0">${label}</label>`);
@@ -44,7 +45,9 @@ function bfi_init(options = null) {
 		if (options.hasOwnProperty('fileNameColor')) style_override += `.bfi-file { color: ${options.fileNameColor} }`;
 		if (options.hasOwnProperty('fileInfoColor')) style_override += `.bfi-file i { color: ${options.fileInfoColor} }`;
 		if (options.hasOwnProperty('dragDropBorder')) style_override += `.bfi-container.expanded { border: ${options.dragDropBorder} }`;
-		document.body.insertAdjacentHTML('beforeend', `<style class="bfi-style-override">${style_override}</style>`);
+		if(style_override.lenght > 0) {
+			document.body.insertAdjacentHTML('beforeend', `<style class="bfi-style-override">${style_override}</style>`);
+		}
 	}
 }
 
